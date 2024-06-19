@@ -1,0 +1,12 @@
+type Query {
+    petById(id: ID): Pet
+}
+
+type Pet {
+    id: ID
+    name: String
+    weight: Float
+    breed: String
+    vaccinationStatus: String
+    trainingLevel: Int
+}
