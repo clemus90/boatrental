@@ -1,7 +1,7 @@
 type Query {
     petById(id: ID!): Pet
     eligiblePets(filter: PetEligibility!): [Pet!]!
-    isPetEligible(petId: ID!, filter: PetEligibility!): [Pet!]!
+    isPetEligible(petId: ID!, filter: PetEligibility!): PetEligibleResult
 }
 
 type Mutation {
@@ -15,6 +15,10 @@ type Pet {
     breed: String
     vaccinated: Boolean
     trainingLevel: Int
+}
+
+type PetEligibleResult {
+    eligible: Boolean!
 }
 
 input PetInput {

@@ -1,5 +1,7 @@
 package com.petscreening.boatrental.pets;
 
+import java.util.Optional;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -52,7 +54,13 @@ public class Pet {
     }
 
     public PetRecord toPetRecord() {
-        return new PetRecord(id, name, weight, breed, vaccinated, trainingLevel);
+        return new PetRecord(
+                id,
+                name,
+                Optional.ofNullable(weight),
+                Optional.ofNullable(breed),
+                Optional.ofNullable(vaccinated),
+                Optional.ofNullable(trainingLevel));
     }
 
 }

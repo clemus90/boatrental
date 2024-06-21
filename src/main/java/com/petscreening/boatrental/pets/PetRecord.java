@@ -1,10 +1,12 @@
 package com.petscreening.boatrental.pets;
 
+import java.util.Optional;
+
 public record PetRecord(
         Long id,
         String name,
-        Double weight,
-        String breed,
-        Boolean vaccinated,
-        Integer trainingLevel) {
+        Optional<Double> weight,
+        Optional<String> breed,
+        Optional<Boolean> vaccinated,
+        Optional<Integer> trainingLevel) {
 }

@@ -9,6 +9,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import com.petscreening.boatrental.pets.peteligibility.PetEligibility;
+import com.petscreening.boatrental.pets.peteligibility.PetEligibleResult;
 
 @Controller
 public class PetController {
@@ -27,6 +28,11 @@ public class PetController {
     @QueryMapping
     public List<PetRecord> eligiblePets(@Argument PetEligibility filter) {
         return this.petService.filterPet(filter);
+    }
+
+    @QueryMapping
+    public Optional<PetEligibleResult> isPetEligible(@Argument long petId, @Argument PetEligibility filter) {
+        return this.petService.isPetEligible(petId, filter);
     }
 
     @MutationMapping
