@@ -8,25 +8,25 @@ import org.springframework.graphql.test.tester.GraphQlTester;
 @GraphQlTest(PetController.class)
 public class PetControllerTests {
 
-	@Autowired
-	private GraphQlTester graphQlTester;
+    @Autowired
+    private GraphQlTester graphQlTester;
 
-	@Test
-	void shouldGetThirdPet() {
-		this.graphQlTester
-				.documentName("petDetails")
-				.variable("id", "p003")
-				.execute()
-				.path("petById")
-				.matchesJson("""
-							{
-							  "id": "p003",
-							  "name": "Coco",
-							  "weight": 10,
-							  "breed": "Cocker Spaniel",
-							  "vaccinationStatus": "Not-vaccinated",
-							  "trainingLevel": 1
-							}
-						""");
-	}
+    @Test
+    void shouldGetThirdPet() {
+        this.graphQlTester
+                .documentName("petDetails")
+                .variable("id", 3)
+                .execute()
+                .path("petById")
+                .matchesJson("""
+                        	{
+                        	  "id": "p003",
+                        	  "name": "Coco",
+                        	  "weight": 10,
+                        	  "breed": "Cocker Spaniel",
+                        	  "vaccinationStatus": "Not-vaccinated",
+                        	  "trainingLevel": 1
+                        	}
+                        """);
+    }
 }

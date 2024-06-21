@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: Boat Rental
+  graphql:
+    graphiql:
+        enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/boatrental
+    username: postgres
+    password: boatrental

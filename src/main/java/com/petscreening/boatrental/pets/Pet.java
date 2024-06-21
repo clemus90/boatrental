@@ -1,25 +1,58 @@
 package com.petscreening.boatrental.pets;
 
-import java.util.Arrays;
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-public record Pet(
-        String id,
-        String name,
-        double weight,
-        String breed,
-        String vaccinationStatus,
-        int trainingLevel) {
+@Entity
+public class Pet {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    String name;
+    Double weight;
+    String breed;
+    Boolean vaccinated;
+    Integer trainingLevel;
 
-    private static List<Pet> pets = Arrays.asList(
-            new Pet("p001", "Homero", 20, "Basset Hound", "Vaccinated", 8),
-            new Pet("p002", "Mulan", 5, "Criolla", "Vaccinated", 2),
-            new Pet("p003", "Coco", 10, "Cocker Spaniel", "Not-vaccinated", 1));
-
-    public static Pet getById(String id) {
-        return pets.stream()
-                .filter(pet -> pet.id().equals(id))
-                .findFirst()
-                .orElse(null);
+    protected Pet() {
     }
+
+    public Pet(String name, Double weight, String breed, Boolean vaccinated, Integer trainingLevel) {
+        this.name = name;
+        this.weight = weight;
+        this.breed = breed;
+        this.vaccinated = vaccinated;
+        this.trainingLevel = trainingLevel;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public Boolean getVaccinated() {
+        return vaccinated;
+    }
+
+    public Integer getTrainingLevel() {
+        return trainingLevel;
+    }
+
+    public PetRecord toPetRecord() {
+        return new PetRecord(id, name, weight, breed, vaccinated, trainingLevel);
+    }
+
 }
